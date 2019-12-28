@@ -1,9 +1,9 @@
 <template>
     <div>
-        <nuxt-link to="/jokex">Back to jokes</nuxt-link>
+        <nuxt-link to="/jokes">Back to jokes</nuxt-link>
         <h2>{{ joke }}</h2>
         <hr />
-        <small>Joke ID: {{ this.$route.params.id }}</small>
+        <small>Joke ID: {{ $route.params.id }}</small>
     </div>
 </template>
 
@@ -12,27 +12,40 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            joke:{}
-        }
+            joke: {}
+        };
     },
 
     async created() {
         const config = {
             headers: {
-                'Accept': 'application/json'
+                Accept: "application/json"
             }
-        }
+        };
 
         try {
-            const res = await axios.get(`https://icanhazdadjoke.com/j/${this.$route.params.results[id]}`, config);
+            const res = await axios.get(`https://icanhazdadjoke.com/j/${this.$route.params.id}`, config);
 
             this.joke = res.data.joke;
             console.log(this.joke);
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
+    },
+
+    head() {
+        return {
+            title: this.joke,
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: "Best Place for Dad Jokes"
+                }
+            ]
+        };
     }
-}
+};
 </script>
 
 <style>

@@ -13,14 +13,14 @@ export default {
             meta: [
                 {
                     hid: "description",
-                    name: 'description',
-                    content: 'Best Place for dad jokes'
+                    name: "description",
+                    content: "Best Place for dad jokes"
                 }
                 
             ]
-        }
+        };
     }
-}
+};
 </script>
 
 <style>
